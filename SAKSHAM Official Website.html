@@ -1,0 +1,1671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAKSHAM | Safar Sabka, Suvidha Sabki</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --wine: #100309;
+    --burgundy: #1b0610;
+    --red: #310b19;
+    --gold: #a98243;
+    --light-gold: #d9bd80;
+    --cream: #eee2cd;
+    --dark: #090206;
+    --nav-height: 76px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    background: var(--wine);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 5%;
+    background: rgba(13, 3, 8, 0.98);
+    border-bottom: 1px solid var(--gold);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.brand-symbol {
+    width: 45px;
+    height: 45px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+}
+.brand-symbol svg {
+    width: 34px;
+    height: 34px;
+    display: block;
+}
+
+.brand-name {
+    font-family: 'Cinzel', serif;
+    color: var(--light-gold);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+
+.brand-small {
+    color: #cba96b;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-top: 3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.nav-links button {
+    background: transparent;
+    color: #e7d9bd;
+    border: 1px solid transparent;
+    padding: 9px 12px;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+    color: var(--light-gold);
+    border-color: var(--gold);
+    background: rgba(213,173,98,0.1);
+}
+
+/* JOURNEY AND SCROLLING */
+
+.journey {
+    position: relative;
+    width: 100%;
+}
+
+.journey-viewport {
+    background: linear-gradient(
+        135deg,
+        #090206,
+        #1b0610,
+        #0d0308
+    );
+}
+
+.train-track {
+    height: 100%;
+    display: flex;
+    width: max-content;
+    transform: translate3d(0,0,0);
+    will-change: transform;
+}
+
+.coach {
+    width: 100vw;
+    height: 100%;
+    flex-shrink: 0;
+    position: relative;
+    padding: 55px clamp(20px, 6vw, 90px) 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(213,173,98,0.08), transparent 65%);
+}
+
+.coach::before {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(213,173,98,0.45);
+    pointer-events: none;
+}
+
+.coach::after {
+    content: "✦";
+    position: absolute;
+    top: 22px;
+    right: 30px;
+    color: var(--gold);
+    font-size: 23px;
+    opacity: 0.7;
+}
+
+.coach-content {
+    position: relative;
+    z-index: 5;
+    width: min(100%, 1050px);
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 20px 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+}
+
+.coach-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.coach-content::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 13px;
+}
+
+.coach h1,
+.coach h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--light-gold);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.coach h2 {
+    font-size: clamp(25px, 3vw, 42px);
+    margin-bottom: 17px;
+}
+
+.coach p {
+    color: #e9dcc8;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.5;
+}
+
+.gold-line {
+    width: 90px;
+    height: 2px;
+    background: var(--gold);
+    margin: 17px 0 22px;
+    box-shadow: 0 0 12px rgba(213,173,98,0.6);
+}
+
+.section-number {
+    position: absolute;
+    right: 7%;
+    top: 12%;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(65px, 12vw, 150px);
+    color: rgba(213,173,98,0.07);
+    pointer-events: none;
+}
+
+/* DECORATIVE TRAIN WINDOWS */
+
+.windows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    z-index: 2;
+}
+
+.window {
+    width: 75px;
+    height: 13px;
+    border: 1px solid #c89b54;
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(#e7c77e, #5e3829);
+    box-shadow: 0 0 14px rgba(213,173,98,0.4);
+}
+
+/* PASSENGERS */
+
+.passengers {
+    position: absolute;
+    bottom: 67px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    opacity: 0.72;
+    pointer-events: none;
+}
+
+.person {
+    width: 30px;
+    height: 66px;
+    position: relative;
+    animation: passengerMove 3s ease-in-out infinite;
+}
+
+.person:nth-child(even) {
+    animation-delay: 1s;
+}
+
+.person .head {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 15px;
+    height: 15px;
+    background: #d8b77d;
+    border-radius: 50%;
+}
+
+.person .body {
+    position: absolute;
+    top: 17px;
+    left: 3px;
+    width: 25px;
+    height: 38px;
+    border-radius: 9px 9px 3px 3px;
+    background: #a86b42;
+}
+
+.person:nth-child(2) .body { background: #496d70; }
+.person:nth-child(3) .body { background: #8e4350; }
+.person:nth-child(4) .body { background: #77613c; }
+.person:nth-child(5) .body { background: #52634c; }
+
+.person .legs {
+    position: absolute;
+    top: 53px;
+    left: 7px;
+    width: 6px;
+    height: 13px;
+    background: #c8b79e;
+    box-shadow: 10px 0 #c8b79e;
+}
+
+@keyframes passengerMove {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* WHEELS AND TRACK */
+
+.train-bottom {
+    background: linear-gradient(
+        to bottom,
+        #1b0610,
+        #070205
+    );
+}
+
+.wheel-row {
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 6%;
+}
+
+.wheel {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 5px solid #c49a52;
+    background: radial-gradient(circle, #d8b56f 0 15%, #35101b 18% 45%, #c49a52 48% 55%, #220811 58%);
+    box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    animation: rotate 2.5s linear infinite;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+.rail {
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #b78c4d;
+    box-shadow: 0 12px #6b4934;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.info-card {
+    min-height: 145px;
+    padding: 20px;
+    border: 1px solid rgba(213,173,98,0.55);
+    background: linear-gradient(145deg, rgba(75,22,39,0.82), rgba(17,4,10,0.96));
+    position: relative;
+    transition: 0.35s;
+    animation: cardReveal 0.8s both;
+}
+
+.info-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--light-gold);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.info-card .icon {
+    color: var(--gold);
+    font-size: 27px;
+    margin-bottom: 9px;
+}
+
+.info-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--light-gold);
+    margin-bottom: 7px;
+}
+
+.info-card p {
+    font-size: 16px;
+    line-height: 1.35;
+}
+
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* INTRO */
+
+.intro {
+    text-align: center;
+}
+
+.crest {
+    width: 95px;
+    height: 95px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    margin: 0 auto 22px;
+    display: grid;
+    place-items: center;
+    font-size: 43px;
+    color: var(--gold);
+    box-shadow: 0 0 30px rgba(213,173,98,0.18), inset 0 0 20px rgba(213,173,98,0.1);
+    animation: crestGlow 3s ease-in-out infinite;
+}
+.crest svg {
+    width: 70px;
+    height: 70px;
+    display: block;
+}
+
+@keyframes crestGlow {
+    50% { box-shadow: 0 0 35px rgba(213,173,98,0.5), inset 0 0 20px rgba(213,173,98,0.2); }
+}
+
+.intro h1 {
+    font-size: clamp(38px, 7vw, 78px);
+    letter-spacing: 7px;
+    text-shadow: 0 4px 25px rgba(0,0,0,0.6);
+}
+
+.intro .full-form {
+    color: var(--light-gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 25px);
+    margin-top: 14px;
+}
+
+.tagline {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 12px 28px;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-size: clamp(12px, 1.5vw, 17px);
+}
+
+/* PROBLEM AND MEASURES */
+
+.problem-highlight {
+    padding: 22px 25px;
+    border-left: 3px solid var(--gold);
+    background: rgba(213,173,98,0.08);
+    margin-top: 20px;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.feature {
+    padding: 14px 17px;
+    border: 1px solid rgba(213,173,98,0.35);
+    background: rgba(255,255,255,0.035);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: #f0dfc4;
+}
+
+.feature span {
+    color: var(--gold);
+    margin-right: 8px;
+}
+
+/* STATION AND PROGRESS */
+
+.station-label {
+    position: absolute;
+    z-index: 20;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--light-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+.progress-area {
+    position: absolute;
+    bottom: 73px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.progress-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #78505a;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.progress-dot.active {
+    width: 27px;
+    border-radius: 20px;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(213,173,98,0.7);
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 73px;
+    right: 5%;
+    z-index: 20;
+    color: #d8c39e;
+    font-size: 9px;
+    letter-spacing: 2px;
+    animation: hint 2s infinite;
+}
+
+@keyframes hint {
+    50% { opacity: 0.4; transform: translateY(4px); }
+}
+
+/* GOLD PARTICLES */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticle 7s linear infinite;
+}
+
+@keyframes floatParticle {
+    from { transform: translateY(100vh) rotate(0); opacity: 0; }
+    20% { opacity: 0.7; }
+    to { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* FINAL COMPARTMENT */
+
+.destination {
+    text-align: center;
+}
+
+.destination .destination-symbol {
+    font-size: 65px;
+    color: var(--gold);
+    margin-bottom: 15px;
+    animation: crestGlow 3s infinite;
+}
+
+.destination h2 {
+    font-size: clamp(30px, 4vw, 52px);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+    .navbar {
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 12px;
+        gap: 7px;
+    }
+
+    :root {
+        --nav-height: 105px;
+    }
+
+    .brand-symbol {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 3px;
+    }
+
+    .nav-links button {
+        padding: 6px 7px;
+        font-size: 8px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .coach {
+        padding: 25px 25px 115px;
+    }
+
+    .scroll-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .coach {
+        padding: 25px 22px 110px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .info-card {
+        min-height: 0;
+        padding: 13px 16px;
+    }
+
+    .info-card .icon {
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+
+    .info-card p {
+        font-size: 15px;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+    }
+
+    .coach-content {
+        padding: 18px 5px;
+    }
+
+    .intro h1 {
+        letter-spacing: 3px;
+    }
+
+    .progress-area {
+        gap: 7px;
+    }
+
+    .progress-dot {
+        width: 7px;
+        height: 7px;
+    }
+
+    .progress-dot.active {
+        width: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* ROYAL LOCOMOTIVE AND CONNECTED COACHES */
+.journey-viewport {
+    position: sticky;
+    top: var(--nav-height);
+    height: calc(100vh - var(--nav-height));
+    min-height: 570px;
+    overflow: hidden;
+}
+.royal-train {
+    position: absolute;
+    z-index: 16;
+    left: 50%;
+    bottom: 4px;
+    width: min(1180px, 96vw);
+    max-width: 96vw;
+    height: auto;
+    transform: translateX(-50%);
+    pointer-events: none;
+    filter: drop-shadow(0 7px 12px rgba(0,0,0,.65));
+}
+.royal-train svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+.coach {
+    padding-bottom: 190px;
+}
+.progress-area {
+    bottom: 190px;
+}
+.scroll-hint {
+    bottom: 190px;
+}
+@media (max-width: 850px) {
+    .journey-viewport {
+        min-height: 620px;
+    }
+    .royal-train {
+        width: min(1180px, 96vw);
+        max-width: 96vw;
+        left: 50%;
+        transform: translateX(-50%);
+        transform-origin: center bottom;
+    }
+    .coach {
+        padding-bottom: 170px;
+    }
+    .progress-area,
+    .scroll-hint {
+        bottom: 165px;
+    }
+}
+@media (max-width: 520px) {
+    .royal-train {
+        width: 96vw;
+        max-width: 96vw;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .coach {
+        padding-bottom: 145px;
+    }
+    .progress-area,
+    .scroll-hint {
+        bottom: 140px;
+    }
+}
+
+
+/* SAKSHAM — smoother guided train journey */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body { overscroll-behavior: none; }
+.navbar {
+    position: relative;
+    min-height: var(--nav-height);
+    height: auto;
+}
+.journey {
+    height: calc(100svh - var(--nav-height)) !important;
+    min-height: 0;
+}
+.journey-viewport {
+    position: relative !important;
+    top: auto !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+}
+.train-track {
+    position: absolute;
+    inset: 0 auto 0 0;
+    height: 100%;
+    transition: transform 1050ms cubic-bezier(.22,.78,.18,1);
+    will-change: transform;
+}
+.coach {
+    width: 100vw;
+    height: 100%;
+    min-height: 0;
+    padding: 58px clamp(22px, 6vw, 90px) 190px;
+    align-items: center;
+}
+.coach-content {
+    max-height: calc(100% - 10px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) rgba(255,255,255,.06);
+    padding: 18px 14px 24px;
+}
+.coach-content::-webkit-scrollbar { width: 7px; }
+.coach-content::-webkit-scrollbar-track { background: rgba(255,255,255,.04); border-radius: 8px; }
+.coach-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 8px; }
+.coach.is-current .coach-content {
+    animation: coachArrival 720ms both;
+}
+@keyframes coachArrival {
+    from { opacity: .25; transform: translateX(34px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+.royal-train {
+    transition: transform 620ms cubic-bezier(.2,.8,.2,1);
+    transform: translateX(calc(-50% + var(--train-nudge, 0px)));
+}
+.progress-area { bottom: 166px; }
+.scroll-hint { bottom: 166px; }
+.journey-controls {
+    position: absolute;
+    z-index: 40;
+    right: clamp(20px, 5vw, 70px);
+    bottom: 158px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: var(--light-gold);
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+.journey-arrow {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--light-gold);
+    background: rgba(16,3,9,.88);
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .25s, transform .25s, opacity .25s;
+}
+.journey-arrow:hover:not(:disabled) {
+    background: rgba(169,130,67,.28);
+    transform: scale(1.08);
+}
+.journey-arrow:disabled { opacity: .28; cursor: not-allowed; }
+.nav-links button { white-space: nowrap; }
+button:focus-visible {
+    outline: 2px solid var(--light-gold);
+    outline-offset: 3px;
+}
+@media (max-width: 850px) {
+    html, body { overflow: hidden; }
+    .navbar {
+        height: auto;
+        min-height: var(--nav-height);
+        max-height: 118px;
+        overflow: visible;
+    }
+    .journey { height: calc(100svh - var(--nav-height)) !important; }
+    .journey-viewport { min-height: 0 !important; }
+    .coach { padding: 48px 24px 178px; }
+    .progress-area, .scroll-hint { bottom: 150px; }
+    .journey-controls { bottom: 140px; right: 22px; }
+    .royal-train { width: min(900px, 112vw); }
+}
+@media (max-width: 520px) {
+    .navbar { max-height: 125px; }
+    .nav-links { flex-wrap: nowrap; width: 100%; overflow-x: auto; justify-content: flex-start; padding: 2px 4px 7px; scrollbar-width: none; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links button { flex: 0 0 auto; }
+    .coach { padding: 42px 20px 158px; }
+    .coach-content { padding: 14px 7px 22px; }
+    .royal-train { width: 118vw; max-width: none; bottom: 1px; }
+    .progress-area { left: 24px; transform: none; bottom: 133px; gap: 6px; }
+    .progress-dot { width: 6px; height: 6px; }
+    .progress-dot.active { width: 17px; }
+    .journey-controls { bottom: 124px; right: 16px; gap: 8px; }
+    .journey-arrow { width: 31px; height: 31px; font-size: 22px; }
+    .journey-count { font-size: 9px; }
+    .station-label { top: 14px; font-size: 8px; letter-spacing: 2px; }
+    .coach h2 { font-size: clamp(23px, 7vw, 34px); }
+}
+@media (max-height: 650px) and (min-width: 851px) {
+    .coach { padding-top: 35px; padding-bottom: 160px; }
+    .progress-area, .scroll-hint { bottom: 135px; }
+    .journey-controls { bottom: 127px; }
+    .royal-train { width: min(900px, 82vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .train-track, .royal-train { transition-duration: .01ms !important; }
+    .coach.is-current .coach-content { animation: none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="brand">
+        <div class="brand-symbol"><svg viewBox="0 0 48 48" role="img" aria-label="Accessible railway emblem">
+  <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M14 9h20a4 4 0 0 1 4 4v15H10V13a4 4 0 0 1 4-4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M15 15h7v7h-7zm11 0h7v7h-7zM17 28l-4 6m18-6 4 6M18 34h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="24" cy="27" r="2" fill="currentColor"/>
+  <path d="M24 29v5m0-3 5 2m-5-4-4 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M16 39h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg></div>
+        <div>
+            <div class="brand-name">SAKSHAM</div>
+            <div class="brand-small">A JOURNEY TOWARDS INCLUSION</div>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <button class="active" data-stop="0">HOME</button>
+        <button data-stop="1">THE ISSUE</button>
+        <button data-stop="2">OBJECTIVES</button>
+        <button data-stop="3">MEASURES</button>
+        <button data-stop="4">IMPLEMENTATION</button>
+        <button data-stop="5">JUSTIFICATION</button>
+        <button data-stop="6">OUTCOMES</button>
+    </div>
+</nav>
+
+<section class="journey" id="journey">
+    <div class="journey-viewport" id="viewport">
+
+        <div class="particles" id="particles"></div>
+
+        <div class="station-label" id="stationLabel">
+            NOW ARRIVING • SAKSHAM CENTRAL
+        </div>
+
+        <div class="train-track" id="trainTrack">
+
+            <!-- ENGINE / INTRO -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="coach-content intro">
+                    <div class="crest"><svg viewBox="0 0 48 48" role="img" aria-label="Accessible railway emblem">
+  <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M14 9h20a4 4 0 0 1 4 4v15H10V13a4 4 0 0 1 4-4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M15 15h7v7h-7zm11 0h7v7h-7zM17 28l-4 6m18-6 4 6M18 34h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="24" cy="27" r="2" fill="currentColor"/>
+  <path d="M24 29v5m0-3 5 2m-5-4-4 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M16 39h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg></div>
+                    <div class="eyebrow">THE INDIAN RAILWAYS • A POLICY FOR EVERY PASSENGER</div>
+                    <h1>SAKSHAM</h1>
+                    <p class="full-form">
+                        Surakshit Aur Khula Safar,<br>
+                        Har Aam Musafir Ke Liye
+                    </p>
+                    <div class="tagline">Safar Sabka, Suvidha Sabki.</div>
+                    <div class="gold-line" style="margin:25px auto;"></div>
+                    <p>
+                        Overcoming the Inaccessibility of Public Transport for Senior Citizens and Disabled People.
+                    </p>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+            <!-- COMPARTMENT 1: PROBLEM -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="section-number">01</div>
+
+                <div class="coach-content">
+                    <div class="eyebrow">FIRST STOP • UNDERSTANDING THE CHALLENGE</div>
+                    <h2>The Social Problem</h2>
+                    <div class="gold-line"></div>
+
+                    <div class="problem-highlight">
+                        <p>
+                            Core Issue: Persons with disabilities, senior citizens, and commuters with reduced mobility face systemic exclusion from civic, social, and economic opportunities in urban India due to fragmented and inaccessible last-mile transportation infrastructure.
+                        </p>
+                    </div>
+
+                    <div class="cards">
+                        <div class="info-card">
+                            <div class="icon">♿</div>
+                            <h3>Root Causes</h3>
+                            <p>While cities build modern transit hubs, the surrounding infrastructure—broken footpaths, missing tactile paving, high-floor feeder autos, and top-down planning without user input—creates an impassable barrier.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">♧</div>
+                            <h3>Consequences</h3>
+                            <p> This "last-mile gap" strips citizens of personal independence, forces reliance on family or costly private cabs, and restricts their fundamental right to freedom of movement.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◈</div>
+                            <h3>Relevance & Significance</h3>
+                            <p>In rapidly urbanizing India, inaccessible public transit actively blocks millions of marginalized citizens from reaching schools, workplaces, and hospitals, turning an infrastructure gap into lifelong socio-economic inequality.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+            <!-- COMPARTMENT 2: OBJECTIVES -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="section-number">02</div>
+
+                <div class="coach-content">
+                    <div class="eyebrow">SECOND STOP • OUR VISION</div>
+                    <h2>Policy Objectives</h2>
+                    <div class="gold-line"></div>
+                    <p>
+                        SAKSHAM aims to transform public transportation into a
+                        space where accessibility is a standard, not a privilege.
+                    </p>
+
+                    <div class="cards">
+                        <div class="info-card">
+                            <div class="icon">✧</div>
+                            <h3>Universal Access</h3>
+                            <p>Make railway stations and trains accessible to passengers with diverse mobility needs.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">♧</div>
+                            <h3>Passenger Safety</h3>
+                            <p>Reduce travel-related risks through safer infrastructure and assistance.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◇</div>
+                            <h3>Independence</h3>
+                            <p>Enable passengers to travel with greater confidence and dignity.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◎</div>
+                            <h3>Equal Opportunity</h3>
+                            <p>Ensure mobility limitations do not restrict access to public transport.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">✦</div>
+                            <h3>Inclusive Services</h3>
+                            <p>Make passenger information and support available to all.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">♜</div>
+                            <h3>Accountability</h3>
+                            <p>Establish regular accessibility audits and feedback systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+            <!-- COMPARTMENT 3: MEASURES -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="section-number">03</div>
+
+                <div class="coach-content">
+                    <div class="eyebrow">THIRD STOP • THE PROPOSED SOLUTION</div>
+                    <h2>Proposed Measures</h2>
+                    <div class="gold-line"></div>
+                    <p>
+                        A combination of infrastructure, technology and human
+                        support will help make every journey more accessible.
+                    </p>
+
+                    <div class="cards">
+                        <div class="info-card">
+                            <div class="icon">♿</div>
+                            <h3>Accessible Infrastructure</h3>
+                            <p>Ramps, lifts, tactile pathways, accessible toilets and safer platform access.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">▣</div>
+                            <h3>Reserved Spaces</h3>
+                            <p>Clearly marked seating and designated wheelchair spaces in trains.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◉</div>
+                            <h3>Digital Assistance</h3>
+                            <p>A simple booking and assistance system for passengers requiring support.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">♬</div>
+                            <h3>Inclusive Information</h3>
+                            <p>Audio announcements, visual displays and clear multilingual signage.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">✚</div>
+                            <h3>Trained Personnel</h3>
+                            <p>Dedicated staff to assist passengers at stations and during journeys.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◈</div>
+                            <h3>Emergency Support</h3>
+                            <p>Accessible help points and priority response for passengers needing assistance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+            <!-- COMPARTMENT 4: IMPLEMENTATION -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="section-number">04</div>
+
+                <div class="coach-content">
+                    <div class="eyebrow">FOURTH STOP • PUTTING THE POLICY INTO ACTION</div>
+                    <h2>Implementation Strategy</h2>
+                    <div class="gold-line"></div>
+                    <p>
+                        SAKSHAM will be implemented through coordinated action
+                        between railway authorities, station administrations
+                        and accessibility experts.
+                    </p>
+
+                    <div class="feature-list">
+                        <div class="feature"><span>01</span> Accessibility audits of stations and trains</div>
+                        <div class="feature"><span>02</span> Phased infrastructure improvements</div>
+                        <div class="feature"><span>03</span> Recruitment and training of support staff</div>
+                        <div class="feature"><span>04</span> Introduction of digital assistance facilities</div>
+                        <div class="feature"><span>05</span> Regular safety inspections and maintenance</div>
+                        <div class="feature"><span>06</span> Passenger feedback and grievance redressal</div>
+                    </div>
+
+                    <div class="problem-highlight">
+                        <h3 style="font-family:'Cinzel',serif;color:var(--light-gold);margin-bottom:10px;">
+                            Practicality and Implementation
+                        </h3>
+                        <p>
+                            The policy can be implemented gradually by government and transport authorities by upgrading existing buses, stations and bus stops with ramps, lifts, handrails and priority seating. Staff training and regular accessibility inspections can also be introduced. Although some changes may require additional funding, implementing them in phases will make the policy practical and affordable.
+                        </p>
+                    </div>
+
+                    <div class="problem-highlight" style="margin-top:14px;">
+                        <p>
+                            <strong style="color:var(--light-gold)">Monitoring:</strong>
+                            Progress will be reviewed through accessibility
+                            audits, passenger feedback, service inspections
+                            and periodic performance reports.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+            <!-- COMPARTMENT 5: JUSTIFICATION -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="section-number">05</div>
+
+                <div class="coach-content">
+                    <div class="eyebrow">FIFTH STOP • WHY THIS POLICY MATTERS</div>
+                    <h2>Policy Justification</h2>
+                    <div class="gold-line"></div>
+
+                    <p>
+                        Public transportation is an essential public service.
+                        Its benefits must be available to every citizen,
+                        regardless of age or physical ability.
+                    </p>
+
+                    <div class="cards">
+                        <div class="info-card">
+                            <div class="icon">⚖</div>
+                            <h3>Right to Equality</h3>
+                            <p>Supports equal access and non-discrimination in public services.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">♧</div>
+                            <h3>Human Dignity</h3>
+                            <p>Reduces unnecessary dependence and promotes independent mobility.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◎</div>
+                            <h3>Social Inclusion</h3>
+                            <p>Encourages participation in education, employment and everyday life.</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-highlight">
+                        <p>
+                            The policy reflects the principles of accessibility
+                            and inclusion recognised under the Rights of Persons
+                            with Disabilities Act, 2016 and the broader vision
+                            of universal design.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+            <!-- COMPARTMENT 6: OUTCOMES -->
+
+            <section class="coach">
+                <div class="windows">
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div><div class="window"></div>
+                    <div class="window"></div>
+                </div>
+
+                <div class="section-number">06</div>
+
+                <div class="coach-content destination">
+                    <div class="destination-symbol">✧</div>
+                    <div class="eyebrow">FINAL DESTINATION • A MORE INCLUSIVE INDIA</div>
+                    <h2>Expected Outcomes</h2>
+                    <div class="gold-line" style="margin:20px auto;"></div>
+
+                    <div class="cards">
+                        <div class="info-card">
+                            <div class="icon">♿</div>
+                            <h3>Greater Accessibility</h3>
+                            <p>More inclusive railway stations, platforms and trains.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">✦</div>
+                            <h3>Safer Journeys</h3>
+                            <p>Improved passenger safety and access to assistance.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="icon">◎</div>
+                            <h3>Independent Mobility</h3>
+                            <p>Greater confidence and freedom for passengers.</p>
+                        </div>
+                    </div>
+
+                    <div class="problem-highlight" style="margin-top:25px;">
+                        <h3 style="font-family:'Cinzel',serif;color:var(--light-gold);margin-bottom:10px;">
+                            Effectiveness
+                        </h3>
+                        <p>
+                            These measures will improve safety, encourage independent travel and make public transport more accessible and inclusive for everyone.
+                        </p>
+                    </div>
+
+                    <div class="problem-highlight" style="margin-top:14px;">
+                        <h3 style="font-family:'Cinzel',serif;color:var(--light-gold);margin-bottom:10px;">
+                            THE JOURNEY DOES NOT END HERE
+                        </h3>
+                        <p>
+                            SAKSHAM envisions a railway system where accessibility
+                            is built into every journey, every station and every
+                            passenger experience.
+                        </p>
+                    </div>
+
+                    <div class="tagline">Safar Sabka, Suvidha Sabki.</div>
+                </div>
+
+                <div class="passengers">
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                    <div class="person"><div class="head"></div><div class="body"></div><div class="legs"></div></div>
+                </div>
+
+                <div class="train-bottom">
+                    <div class="wheel-row">
+                        <div class="wheel"></div><div class="wheel"></div>
+                        <div class="wheel"></div><div class="wheel"></div>
+                    </div>
+                    <div class="rail"></div>
+                </div>
+            </section>
+
+        </div>
+
+
+        <div class="royal-train" aria-label="A royal burgundy locomotive pulling four connected coaches">
+            <svg viewBox="0 0 1200 190" role="img" aria-hidden="true">
+                <defs>
+                    <linearGradient id="velvetBody" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#55182b"/>
+                        <stop offset="0.48" stop-color="#2a0916"/>
+                        <stop offset="1" stop-color="#100309"/>
+                    </linearGradient>
+                    <linearGradient id="goldMetal" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#f0d99d"/>
+                        <stop offset="0.45" stop-color="#b58b48"/>
+                        <stop offset="1" stop-color="#70502b"/>
+                    </linearGradient>
+                    <linearGradient id="windowGlow" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#f4d99a"/>
+                        <stop offset="1" stop-color="#9a6738"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- Rails and sleepers -->
+                <path d="M18 169 H1180" stroke="url(#goldMetal)" stroke-width="5"/>
+                <path d="M18 179 H1180" stroke="#4c3424" stroke-width="4"/>
+                <g stroke="#80613a" stroke-width="5" opacity=".8">
+                    <path d="M55 165 l-8 18 M145 165 l-8 18 M235 165 l-8 18 M325 165 l-8 18 M415 165 l-8 18 M505 165 l-8 18 M595 165 l-8 18 M685 165 l-8 18 M775 165 l-8 18 M865 165 l-8 18 M955 165 l-8 18 M1045 165 l-8 18 M1135 165 l-8 18"/>
+                </g>
+
+                <!-- Locomotive -->
+                <g stroke="url(#goldMetal)" stroke-width="3" stroke-linejoin="round">
+                    <path d="M30 121 H70 V92 H95 V55 H133 V34 H163 V55 H182 V92 H210 V121 H240 V151 H30 Z"
+                          fill="url(#velvetBody)"/>
+                    <path d="M95 55 H182 M108 34 H163 M117 18 H154 V34 H117 Z" fill="#210713"/>
+                    <path d="M117 18 H154" stroke-width="5"/>
+                    <path d="M82 92 H198" stroke-width="5"/>
+                    <path d="M46 121 H222 V137 H46 Z" fill="#16050d"/>
+                    <path d="M62 65 H91 V91 H62 Z" fill="url(#windowGlow)"/>
+                    <path d="M111 65 H147 V91 H111 Z" fill="url(#windowGlow)"/>
+                    <path d="M166 65 H192 V91 H166 Z" fill="url(#windowGlow)"/>
+                    <path d="M30 105 H240" stroke-width="5"/>
+                    <path d="M30 145 H240" stroke-width="7"/>
+                    <path d="M30 151 H240" stroke-width="3"/>
+                    <path d="M211 101 L239 111 L239 135 L211 135 Z" fill="#3b0c1d"/>
+                    <path d="M20 119 H35 M20 130 H35" stroke-width="5"/>
+                    <path d="M82 24 Q105 5 127 24" fill="none" stroke-width="4"/>
+                    <path d="M126 18 Q139 5 152 18" fill="none" stroke-width="3"/>
+                    <circle cx="69" cy="151" r="13" fill="#12040b"/>
+                    <circle cx="69" cy="151" r="5" fill="url(#goldMetal)"/>
+                    <circle cx="169" cy="151" r="13" fill="#12040b"/>
+                    <circle cx="169" cy="151" r="5" fill="url(#goldMetal)"/>
+                    <circle cx="220" cy="151" r="10" fill="#12040b"/>
+                    <circle cx="220" cy="151" r="4" fill="url(#goldMetal)"/>
+                    <path d="M47 111 H220" stroke="#e0c17c" stroke-width="2"/>
+                    <path d="M133 103 l7 8 l-7 8 l-7-8 Z" fill="#d8b879"/>
+                </g>
+
+                <!-- Couplings -->
+                <g stroke="#c19a57" stroke-width="5" fill="none">
+                    <path d="M240 139 H267 M487 139 H514 M734 139 H761 M981 139 H1008"/>
+                </g>
+
+                <!-- Four connected coaches -->
+                <g stroke="url(#goldMetal)" stroke-width="3" stroke-linejoin="round">
+                    <g transform="translate(267 0)">
+                        <path d="M0 73 Q0 62 13 62 H207 Q220 62 220 75 V151 H0 Z" fill="url(#velvetBody)"/>
+                        <path d="M0 81 H220 M0 137 H220" fill="none" stroke-width="5"/>
+                        <path d="M20 80 H200" stroke="#e1c17c" stroke-width="2"/>
+                        <path d="M22 87 H57 V119 H22 Z M72 87 H107 V119 H72 Z M122 87 H157 V119 H122 Z M172 87 H205 V119 H172 Z" fill="url(#windowGlow)"/>
+                        <path d="M10 68 H210" stroke="#e6cf98" stroke-width="2"/>
+                        <path d="M104 125 l6 7 l-6 7 l-6-7 Z" fill="#d8b879"/>
+                        <circle cx="45" cy="151" r="12" fill="#12040b"/><circle cx="45" cy="151" r="5" fill="url(#goldMetal)"/>
+                        <circle cx="177" cy="151" r="12" fill="#12040b"/><circle cx="177" cy="151" r="5" fill="url(#goldMetal)"/>
+                    </g>
+                    <g transform="translate(514 0)">
+                        <path d="M0 73 Q0 62 13 62 H207 Q220 62 220 75 V151 H0 Z" fill="url(#velvetBody)"/>
+                        <path d="M0 81 H220 M0 137 H220" fill="none" stroke-width="5"/>
+                        <path d="M20 80 H200" stroke="#e1c17c" stroke-width="2"/>
+                        <path d="M22 87 H57 V119 H22 Z M72 87 H107 V119 H72 Z M122 87 H157 V119 H122 Z M172 87 H205 V119 H172 Z" fill="url(#windowGlow)"/>
+                        <path d="M104 125 l6 7 l-6 7 l-6-7 Z" fill="#d8b879"/>
+                        <circle cx="45" cy="151" r="12" fill="#12040b"/><circle cx="45" cy="151" r="5" fill="url(#goldMetal)"/>
+                        <circle cx="177" cy="151" r="12" fill="#12040b"/><circle cx="177" cy="151" r="5" fill="url(#goldMetal)"/>
+                    </g>
+                    <g transform="translate(761 0)">
+                        <path d="M0 73 Q0 62 13 62 H207 Q220 62 220 75 V151 H0 Z" fill="url(#velvetBody)"/>
+                        <path d="M0 81 H220 M0 137 H220" fill="none" stroke-width="5"/>
+                        <path d="M20 80 H200" stroke="#e1c17c" stroke-width="2"/>
+                        <path d="M22 87 H57 V119 H22 Z M72 87 H107 V119 H72 Z M122 87 H157 V119 H122 Z M172 87 H205 V119 H172 Z" fill="url(#windowGlow)"/>
+                        <path d="M104 125 l6 7 l-6 7 l-6-7 Z" fill="#d8b879"/>
+                        <circle cx="45" cy="151" r="12" fill="#12040b"/><circle cx="45" cy="151" r="5" fill="url(#goldMetal)"/>
+                        <circle cx="177" cy="151" r="12" fill="#12040b"/><circle cx="177" cy="151" r="5" fill="url(#goldMetal)"/>
+                    </g>
+                    <g transform="translate(1008 0)">
+                        <path d="M0 73 Q0 62 13 62 H166 Q179 62 179 75 V151 H0 Z" fill="url(#velvetBody)"/>
+                        <path d="M0 81 H179 M0 137 H179" fill="none" stroke-width="5"/>
+                        <path d="M15 80 H164" stroke="#e1c17c" stroke-width="2"/>
+                        <path d="M16 87 H48 V119 H16 Z M58 87 H90 V119 H58 Z M100 87 H132 V119 H100 Z" fill="url(#windowGlow)"/>
+                        <path d="M89 125 l6 7 l-6 7 l-6-7 Z" fill="#d8b879"/>
+                        <circle cx="39" cy="151" r="12" fill="#12040b"/><circle cx="39" cy="151" r="5" fill="url(#goldMetal)"/>
+                        <circle cx="144" cy="151" r="12" fill="#12040b"/><circle cx="144" cy="151" r="5" fill="url(#goldMetal)"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <div class="progress-area" id="progressArea"></div>
+        <div class="scroll-hint">BUTTONS OR ← → KEYS TO TRAVEL</div>
+
+    </div>
+</section>
+
+<script>
+(() => {
+    const journey = document.getElementById("journey");
+    const viewport = document.getElementById("viewport");
+    const track = document.getElementById("trainTrack");
+    const navbar = document.getElementById("navbar");
+    const stationLabel = document.getElementById("stationLabel");
+    const progressArea = document.getElementById("progressArea");
+    const train = document.querySelector(".royal-train");
+    const stops = [
+        "SAKSHAM CENTRAL", "THE ISSUE", "POLICY OBJECTIVES",
+        "PROPOSED MEASURES", "IMPLEMENTATION",
+        "POLICY JUSTIFICATION", "EXPECTED OUTCOMES"
+    ];
+    const coaches = [...document.querySelectorAll(".coach")];
+    const navButtons = [...document.querySelectorAll(".nav-links button")];
+    const totalStops = coaches.length;
+    let currentStop = 0;
+    let wheelRelease;
+
+    // Create clear, clickable progress indicators.
+    stops.forEach((stop, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "progress-dot";
+        dot.setAttribute("aria-label", `Go to ${stop}`);
+        dot.addEventListener("click", () => goToStop(index));
+        progressArea.appendChild(dot);
+    });
+    const dots = [...progressArea.querySelectorAll(".progress-dot")];
+
+    // Add explicit previous/next controls for users who do not want to scroll.
+    const controls = document.createElement("div");
+    controls.className = "journey-controls";
+    controls.setAttribute("aria-label", "Journey navigation. Use left and right arrow keys, Page Up and Page Down, Home, or End.");
+    controls.innerHTML = '<button type="button" class="journey-arrow" aria-label="Previous section">‹</button><span class="journey-count" aria-live="polite">01 / 07</span><button type="button" class="journey-arrow" aria-label="Next section">›</button>';
+    viewport.appendChild(controls);
+    const [previousButton, nextButton] = controls.querySelectorAll("button");
+    previousButton.addEventListener("click", () => goToStop(currentStop - 1));
+    nextButton.addEventListener("click", () => goToStop(currentStop + 1));
+
+    // Subtle ambient particles.
+    const particleContainer = document.getElementById("particles");
+    for (let i = 0; i < 24; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 7}s`;
+        particle.style.animationDuration = `${5 + Math.random() * 6}s`;
+        particleContainer.appendChild(particle);
+    }
+
+    function updateIndicators(index) {
+        stationLabel.textContent = `NOW ARRIVING • ${stops[index]}`;
+        navButtons.forEach(button => {
+            const active = Number(button.dataset.stop) === index;
+            button.classList.toggle("active", active);
+            if (active) button.setAttribute("aria-current", "step");
+            else button.removeAttribute("aria-current");
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+            dot.setAttribute("aria-current", i === index ? "step" : "false");
+        });
+        controls.querySelector(".journey-count").textContent =
+            `${String(index + 1).padStart(2, "0")} / ${String(totalStops).padStart(2, "0")}`;
+        previousButton.disabled = index === 0;
+        nextButton.disabled = index === totalStops - 1;
+    }
+
+    function goToStop(index) {
+        const next = Math.max(0, Math.min(totalStops - 1, index));
+        if (next === currentStop) return;
+        const direction = next > currentStop ? 1 : -1;
+        currentStop = next;
+
+        // Move the connected coaches as one continuous train.
+        track.style.transform = `translate3d(${-currentStop * 100}vw, 0, 0)`;
+
+        // A small locomotive glide reinforces the feeling of arriving at a stop.
+        train.style.setProperty("--train-nudge", `${direction * 34}px`);
+        window.clearTimeout(wheelRelease);
+        wheelRelease = window.setTimeout(() => {
+            train.style.setProperty("--train-nudge", "0px");
+        }, 620);
+
+        coaches.forEach((coach, i) => {
+            coach.classList.toggle("is-current", i === currentStop);
+            const content = coach.querySelector(".coach-content");
+            if (content) content.scrollTop = 0;
+        });
+        updateIndicators(currentStop);
+    }
+
+    // Section changes are intentionally button-only: scrolling and swiping
+    // never advance the train. Content panels may still scroll internally.
+
+    navButtons.forEach(button => {
+        button.addEventListener("click", () => goToStop(Number(button.dataset.stop)));
+    });
+
+    // Keyboard navigation: Left/Right or PageUp/PageDown move between coaches.
+    // Home and End jump to the first and final stops.
+    document.addEventListener("keydown", event => {
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+        const target = event.target;
+        const editable = target instanceof HTMLElement &&
+            (target.isContentEditable ||
+             ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+        if (editable || (target instanceof HTMLElement && target.closest(".coach-content"))) return;
+
+        let destination = null;
+        if (event.key === "ArrowRight" || event.key === "PageDown") destination = currentStop + 1;
+        else if (event.key === "ArrowLeft" || event.key === "PageUp") destination = currentStop - 1;
+        else if (event.key === "Home") destination = 0;
+        else if (event.key === "End") destination = totalStops - 1;
+
+        if (destination !== null) {
+            event.preventDefault();
+            goToStop(destination);
+        }
+    });
+
+    function measure() {
+        const navHeight = navbar.getBoundingClientRect().height;
+        document.documentElement.style.setProperty("--nav-height", `${navHeight}px`);
+        track.style.transform = `translate3d(${-currentStop * 100}vw, 0, 0)`;
+    }
+
+    coaches.forEach((coach, i) => coach.classList.toggle("is-current", i === 0));
+    updateIndicators(0);
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+})();
+</script>
+
+</body>
+</html>
